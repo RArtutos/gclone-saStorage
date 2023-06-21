@@ -622,7 +622,7 @@ func (f *Fs) shouldRetry(err error) (bool, error) {
 		}
 		if len(gerr.Errors) > 0 {
 			reason := gerr.Errors[0].Reason
-			if reason == "rateLimitExceeded" || reason == "userRateLimitExceeded" {
+			if reason == "rateLimitExceeded" || reason == "userRateLimitExceeded" || reason == "quotaExceeded" || reason == "storageQuotaExceeded"{
 				// 如果存在 ServiceAccountFilePath,调用 changeSvc, 重试
 				if(f.opt.ServiceAccountFilePath != ""){
 					f.waitChangeSvc.Lock()
